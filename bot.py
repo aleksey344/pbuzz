@@ -22,16 +22,12 @@ def print_header(text):
     print('====================')
 
 
-NUMBER_OF_CHUNKS = 30
-CHUNK_SIZE = 1000  # Сколько сообщений нужно просканировать за чанк
-
-
 class DeleterClient(TelegramClient):
     def __init__(self, session_user_id, user_phone, api_id, api_hash):
         super().__init__(session_user_id, api_id, api_hash)
 
         self.messages_to_delete = set()
-        self.chunk_size = CHUNK_SIZE
+        self.chunk_size = config.CHUNK_SIZE
 
         # Проверка соеденения с сервером. Проверка данных приложения
         print('Connecting to Telegram servers...')
@@ -80,7 +76,7 @@ class DeleterClient(TelegramClient):
     def filter_messages_from_chunk(self, peer):
         messages = []
 
-        for n in range(NUMBER_OF_CHUNKS):
+        for n in range(config.NUMBER_OF_CHUNKS):
             msgs, status = self.get_chunk(peer, n)
             messages.extend(msgs)
             if not status:

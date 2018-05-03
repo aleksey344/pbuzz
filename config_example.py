@@ -18,3 +18,7 @@ PW = 'twoStepAuthPassword'
 
 # пишем название чата, который нужно почистить, например '@chatusername'
 CHAT_TO_CLEAN = '@chatusername'
+
+# настройки кол-ва сообщений
+NUMBER_OF_CHUNKS = 30  # Сколько подходов делать
+CHUNK_SIZE = 1000  # Сколько сообщений нужно просканировать за подход
